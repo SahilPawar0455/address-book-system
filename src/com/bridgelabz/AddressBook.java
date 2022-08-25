@@ -10,6 +10,55 @@ public class AddressBook {
         System.out.println("Welcome to address book");
         createContact();
         editName();
+        delete();
+    }
+
+    public static void delete() {
+        System.out.println("Delete the Person Details");
+        boolean condition = true;
+        while (condition) {
+            System.out.println("Choose the Number \n1.first Name \n2. last Name \n3. Address \n4. city \n5. State \n6 Zip \n7. Phone Number \n8. Email");
+            int choose = scanner.nextInt();
+            switch (choose) {
+                case 1:
+                    contact.setFirstName(null);
+                    condition = false;
+                    break;
+                case 2:
+                    contact.setLastName(null);
+                    condition = false;
+                    break;
+                case 3:
+                    contact.setAddress(null);
+                    condition = false;
+                    break;
+                case 4:
+                    contact.setCity(null);
+                    condition = false;
+                    break;
+                case 5:
+                    contact.setState(null);
+                    condition = false;
+                    break;
+                case 6:
+                    contact.setZip(0);
+                    condition = false;
+                    break;
+                case 7:
+                    contact.setPhoneNumber(0);
+                    condition = false;
+                    break;
+                case 8:
+                    contact.setEmail(null);
+                    condition = false;
+                    break;
+                default:
+                    System.err.println("Please Enter the valid Number \n ");
+                    condition = true;
+            }
+        }
+        System.out.println("Successful delete the contact and Save it");
+        System.out.println(contact);
     }
 
     public static void createContact() {
