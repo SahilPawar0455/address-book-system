@@ -5,9 +5,26 @@ import java.util.Scanner;
 
 public class AddressBook {
     public static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<Contact> contactArrayList = new ArrayList<>();
+    private String addressBookName;
+    public ArrayList<Contact> contactArrayList = new ArrayList<>();
 
-    public static void editDeleteContact() {
+    public String getAddressBookName() {
+        return addressBookName;
+    }
+
+    public void setAddressBookName(String addressBookName) {
+        this.addressBookName = addressBookName;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressBook{" +
+                "addressBookName='" + addressBookName + '\'' +
+                ", contactArrayList=" + contactArrayList +
+                '}';
+    }
+
+    public void editDeleteContact() {
         boolean condition = true;
         while (condition == true) {
             System.out.println("Choose the Number if you have edit or delete the contact \n1. Edit \n2. Delete \n3. Show the Contacts lists \n4. Exit");
@@ -37,14 +54,17 @@ public class AddressBook {
         }
     }
 
-    public static void multiplyContact(int numberOfContact) {
+    public void multiplyContact() {
+        System.out.println("how many contact are creating");
+        int numberOfContact = scanner.nextInt();
         for (int i = 1; i <= numberOfContact; i++) {
+            System.out.println("Person " + i + " Details");
             createContact();
         }
         System.out.println(contactArrayList);
     }
 
-    public static void createContact() {
+    public void createContact() {
         Contact contact = new Contact();
         System.out.println("Enter the First Name");
         String firstName = scanner.next();
@@ -74,7 +94,7 @@ public class AddressBook {
         contactArrayList.add(contact);
     }
 
-    public static void editName() {
+    public void editName() {
         System.out.println("Edit the Contact");
         System.out.println("Enter the first name");
         String name = scanner.next();
@@ -145,7 +165,7 @@ public class AddressBook {
         }
     }
 
-    public static void delete() {
+    public void delete() {
         System.out.println("Delete the Person Details");
         System.out.println("Enter the name");
         String name = scanner.next();
