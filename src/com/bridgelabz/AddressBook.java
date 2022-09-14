@@ -65,10 +65,10 @@ public class AddressBook {
     }
 
     public void createContact() {
-        System.out.println("Enter the First Name");
+        System.out.println(" Enter the First Name ");
         String firstName = scanner.next();
         boolean Isduplicates = contactArrayList.stream().anyMatch(contact -> contact.getFirstName().equals(firstName));
-        if (Isduplicates){
+        if (Isduplicates) {
             System.out.println("all ready save the contact ");
             return;
         }
