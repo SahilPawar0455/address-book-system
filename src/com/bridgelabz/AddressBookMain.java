@@ -13,6 +13,7 @@ public class AddressBookMain {
         multiplyAddressBook();
         searchPersonInMultiplyAddressBook();
         System.out.println(addressBookMap);
+        countCityOfPerson();
     }
 
     private static void multiplyAddressBook() {
@@ -38,6 +39,17 @@ public class AddressBookMain {
             System.out.println("No book found in address");
         } else {
             addressBook.searchContact();
+        }
+    }
+    private static void countCityOfPerson() {
+        System.out.println("Enter the name of Addresses book");
+        String cityOrstate = scanner.next();
+        AddressBook addressBook = new AddressBook();
+        AddressBook address = addressBookMap.get(cityOrstate);
+        if (address == null){
+            System.out.println("No book is found in address book");
+        }else {
+            addressBook.countCityOrPerson();
         }
     }
 }
