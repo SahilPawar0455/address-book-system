@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -208,5 +209,13 @@ public class AddressBook {
                     }
                 }
         );
+    }
+
+    public void sortByPersonName() {
+        if (contactArrayList.isEmpty()) {
+            System.out.println("Contact book is empty");
+        } else {
+            contactArrayList.stream().sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
+        }
     }
 }
