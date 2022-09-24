@@ -2,6 +2,7 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -10,6 +11,10 @@ public class AddressBook {
     public static Scanner scanner = new Scanner(System.in);
     private String addressBookName;
     public ArrayList<Contact> contactArrayList = new ArrayList<>();
+    public List<Contact> contactList;
+    public AddressBook(List<Contact> contactList) {
+            this.contactList = contactList;
+    }
 
     public String getAddressBookName() {
         return addressBookName;
@@ -25,6 +30,9 @@ public class AddressBook {
                 "addressBookName='" + addressBookName + '\'' +
                 ", contactArrayList=" + contactArrayList +
                 '}';
+    }
+
+    public AddressBook() {
     }
 
     public void editDeleteContact() {
@@ -242,4 +250,17 @@ public class AddressBook {
             contactArrayList.stream().sorted(Comparator.comparing(Contact::getZip)).forEach(System.out::println);
         }
     }
+    public void writeTheData(IOService ioService) {
+        if (ioService.equals(IOService.CONSOLE_IO))
+            System.out.println("\n writing Employee Payroll Roaster to console \n" + contactList);
+        else if (ioService.equals(IOService.FILE_IO))
+            new AddressBookFileIO().writeData(contactList);
+    }
+
+    public long readContactDetails(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            this.contactList = new AddressBookFileIO().readData();
+        return contactList.size();
+    }
+    public enum IOService {CONSOLE_IO, FILE_IO}
 }
