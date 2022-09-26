@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import com.google.gson.Gson;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -16,10 +17,11 @@ import java.util.List;
 
 public class OpenCSVWriter {
     private static final String ADDRESS_BOOK_CSV_FILE = "C:\\Users\\Sahil\\Desktop\\RFP_187\\address-book-systerm\\address-book-CSV.csv";
-
+private static final String ADDRESS_BOOK_GSON_FILE ="address_book.json";
     public static void main(String[] args) throws CsvException, IOException {
         writeCsvFile();
         readCsvFile();
+        writeTheGsonFile();
     }
 
     private static void readCsvFile() throws IOException, CsvException {
@@ -50,5 +52,15 @@ public class OpenCSVWriter {
                 writer2.println(contact);
             }
             writer2.close();
+    }
+    public static void writeTheGsonFile() throws IOException, CsvException {
+        Reader reader = Files.newBufferedReader(Paths.get(ADDRESS_BOOK_CSV_FILE));
+        CSVReader csvReader = new CSVReader(reader);
+        List<String[]> csvUser = csvReader.readAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(csvUser);
+        FileWriter writer = new FileWriter(ADDRESS_BOOK_GSON_FILE);
+        writer.write(json);
+        writer.close();
     }
 }
